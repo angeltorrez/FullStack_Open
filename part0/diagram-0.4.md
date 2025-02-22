@@ -1,13 +1,29 @@
+**Diagram Save -> New_Notes**
 
-    sequenceDiagram
-        participant Navegador
-        participant servidor
+        **Diagrama de Notes**
 
-    Navegador -> Servidor: POST /new_note
-    Servidor -> Navegador: 302 Found
-    Navegador -> Servidor: GET /notes
-    Servidor -> Navegador: 200 OK
-    Navegador -> Servidor: GET /main.css
-    Servidor -> Navegador: 200 OK
-    Navegador -> Servidor: GET /data.json
-    Servidor -> Navegador: 200 OK
+     Navegador                          Servidor
+        |                                  |
+        | HTTP POST /new_note              |
+        |--------------------------------->| 
+        |                                  |
+        | Respuesta HTML                   |
+        |<---------------------------------| 
+        |                                  |
+        | Solicitudes de recursos (CSS, JS)|
+        |--------------------------------->|
+        |                                  |
+        | Respuestas de recursos (CSS, JS) |
+        |<---------------------------------|
+        |                                  |
+        | Ejecuta JS                       |
+        |                                  |
+        | Solicitudes AJAX                 |
+        |--------------------------------->|
+        |                                  |
+        | Respuestas AJAX (JSON)           |
+        |<---------------------------------|
+        |                                  |
+        | Actualiza UI                     |
+        
+*+Note: cuando se realiza el post se invoca la funcion de actualizacion del JSON del lado del servidor+*
